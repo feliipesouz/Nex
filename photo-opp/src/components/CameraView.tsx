@@ -5,14 +5,11 @@ import Countdown from './Countdown'
 import LoadingSpinner from './LoadingSpinner'
 
 type Props = {
-    frameUrl: string
-    onPhotoCaptured: (dataUrl: string) => void
+    onCapture: (video: HTMLVideoElement) => void
 }
 
-export default function CameraView({ frameUrl, onPhotoCaptured }: Props) {
+export default function CameraView({ onCapture }: Props) {
     const videoRef = useRef<HTMLVideoElement | null>(null)
-    const canvasRef = useRef<HTMLCanvasElement | null>(null)
-
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState<string | null>(null)
     const [counting, setCounting] = useState(false)
@@ -48,40 +45,21 @@ export default function CameraView({ frameUrl, onPhotoCaptured }: Props) {
         setCounting(false)
 
         const video = videoRef.current
-        const canvas = canvasRef.current
+        if (!video) return
 
-        if (!video || !canvas) return
-        const ctx = canvas.getContext('2d')
-        if (!ctx) return
+        // Aguarda o vídeo estar pronto
+        await new Promise<void>((resolve) => {
+            if (video.videoWidth > 0 && video.videoHeight > 0) return resolve()
+            const check = setInterval(() => {
+                if (video.videoWidth > 0 && video.videoHeight > 0) {
+                    clearInterval(check)
+                    resolve()
+                }
+            }, 100)
+        })
 
-        // Espera vídeo estar pronto
-        const waitForVideoReady = () =>
-            new Promise<void>((resolve) => {
-                if (video.videoWidth > 0 && video.videoHeight > 0) return resolve()
-                const check = setInterval(() => {
-                    if (video.videoWidth > 0 && video.videoHeight > 0) {
-                        clearInterval(check)
-                        resolve()
-                    }
-                }, 100)
-            })
-
-        await waitForVideoReady()
-
-        // Define o tamanho do canvas
-        canvas.width = video.videoWidth
-        canvas.height = video.videoHeight
-
-        // Captura o frame da câmera
-        ctx.drawImage(video, 0, 0, canvas.width, canvas.height)
-
-        // Converte em imagem base64
-        const dataUrl = canvas.toDataURL('image/png')
-
-        // Chama callback para mostrar preview
-        onPhotoCaptured(dataUrl)
+        onCapture(video)
     }
-
 
     if (loading) {
         return (
@@ -109,8 +87,6 @@ export default function CameraView({ frameUrl, onPhotoCaptured }: Props) {
                 muted
                 className="rounded-lg w-auto h-full object-contain"
             />
-
-            <canvas ref={canvasRef} className="hidden" />
 
             {!counting && (
                 <button

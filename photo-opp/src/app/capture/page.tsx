@@ -5,6 +5,7 @@ import CameraView from '@/components/CameraView'
 import Preview from '@/components/Preview'
 import { useRouter } from 'next/navigation'
 import { v4 as uuidv4 } from 'uuid'
+import { loadMoldura } from '@/lib/loadMoldura'
 
 export default function CapturePage() {
     const [photo, setPhoto] = useState<string | null>(null)
@@ -14,6 +15,26 @@ export default function CapturePage() {
         const id = uuidv4()
         localStorage.setItem(id, photo!)
         router.push(`/photo/${id}`)
+    }
+
+    const handleCapture = async (video: HTMLVideoElement) => {
+        try {
+            const moldura = await loadMoldura('/frames/frame.png')
+
+            const canvas = document.createElement('canvas')
+            canvas.width = video.videoWidth
+            canvas.height = video.videoHeight
+
+            const ctx = canvas.getContext('2d')!
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height)
+            ctx.drawImage(moldura, 0, 0, canvas.width, canvas.height)
+
+            const dataUrl = canvas.toDataURL('image/png')
+            setPhoto(dataUrl)
+        } catch (err) {
+            console.error('Erro ao capturar imagem:', err)
+            alert('Não foi possível aplicar a moldura.')
+        }
     }
 
     if (photo) {
@@ -26,10 +47,5 @@ export default function CapturePage() {
         )
     }
 
-    return (
-        <CameraView
-            frameUrl="/frames/frame.png"
-            onPhotoCaptured={(dataUrl) => setPhoto(dataUrl)}
-        />
-    )
+    return <CameraView onCapture={handleCapture} />
 }
