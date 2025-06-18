@@ -44,30 +44,44 @@ export default function CameraView({ frameUrl, onPhotoCaptured }: Props) {
         setCounting(true)
     }
 
-    const handleCountdownComplete = () => {
+    const handleCountdownComplete = async () => {
         setCounting(false)
 
         const video = videoRef.current
         const canvas = canvasRef.current
 
         if (!video || !canvas) return
-
         const ctx = canvas.getContext('2d')
         if (!ctx) return
 
+        // Espera vídeo estar pronto
+        const waitForVideoReady = () =>
+            new Promise<void>((resolve) => {
+                if (video.videoWidth > 0 && video.videoHeight > 0) return resolve()
+                const check = setInterval(() => {
+                    if (video.videoWidth > 0 && video.videoHeight > 0) {
+                        clearInterval(check)
+                        resolve()
+                    }
+                }, 100)
+            })
+
+        await waitForVideoReady()
+
+        // Define o tamanho do canvas
         canvas.width = video.videoWidth
         canvas.height = video.videoHeight
 
+        // Captura o frame da câmera
         ctx.drawImage(video, 0, 0, canvas.width, canvas.height)
 
-        const frame = new Image()
-        frame.src = frameUrl
-        frame.onload = () => {
-            ctx.drawImage(frame, 0, 0, canvas.width, canvas.height)
-            const dataUrl = canvas.toDataURL('image/png')
-            onPhotoCaptured(dataUrl)
-        }
+        // Converte em imagem base64
+        const dataUrl = canvas.toDataURL('image/png')
+
+        // Chama callback para mostrar preview
+        onPhotoCaptured(dataUrl)
     }
+
 
     if (loading) {
         return (
