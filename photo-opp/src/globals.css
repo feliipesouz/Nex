@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+    @apply bg-gradient-to-br from-zinc-100 to-zinc-300 text-black;
+    font-family: Arial, sans-serif;
+}

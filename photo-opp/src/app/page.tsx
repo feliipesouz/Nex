@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export default function HomePage() {
   return (
-    <main className="h-screen w-full flex flex-col justify-between items-center bg-gradient-to-br from-zinc-100 to-zinc-300 p-8">
+    <main className="h-screen w-full flex flex-col justify-between bg-white items-center bg-gradient-to-br from-zinc-100 to-zinc-300 p-8">
       <div className="w-full flex justify-start">
         <Image
           src="/nextlab.svg"
