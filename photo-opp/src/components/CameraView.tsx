@@ -29,7 +29,6 @@ export default function CameraView({ onCapture }: Props) {
                     })
                 }
 
-                const devices = await navigator.mediaDevices.enumerateDevices()
                 setLoading(false)
             } catch (err) {
                 console.error('Erro ao acessar a câmera:', err)
