@@ -18,11 +18,18 @@ export default function HomePage() {
         <h1 className="text-5xl md:text-[100px] font-bold text-text text-center">Photo Opp</h1>
       </div>
 
-      <Link href="/capture" className="w-full flex justify-center">
-        <button className="bg-primary w-full md:w-[956px] cursor-pointer text-background md:text-[56px] font-bold py-4 px-5 md:py-8 md:px-10 hover:brightness-90">
-          Iniciar
-        </button>
-      </Link>
+      <div className='space-y-2 md:space-y-6 w-full'>
+        <Link href="/capture" className="w-full flex justify-center">
+          <button className="bg-primary w-full md:w-[956px] cursor-pointer text-background md:text-[56px] font-bold py-4 px-5 md:py-8 md:px-10 hover:brightness-90">
+            Iniciar
+          </button>
+        </Link>
+        <Link href="/dashboard" className="w-full flex justify-center">
+          <button className="bg-primary w-full md:w-[956px] cursor-pointer text-background md:text-[56px] font-bold py-4 px-5 md:py-8 md:px-10 hover:brightness-90">
+            dashboard
+          </button>
+        </Link>
+      </div>
     </main>
   )
 }
