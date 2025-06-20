@@ -18,13 +18,22 @@ export default function CameraView({ onCapture }: Props) {
         const enableCamera = async () => {
             try {
                 const stream = await navigator.mediaDevices.getUserMedia({
-                    video: { facingMode: 'user' }
+                    video: { facingMode: 'user' },
                 })
+
+                console.log('Stream capturado:', stream)
 
                 if (videoRef.current) {
                     videoRef.current.srcObject = stream
-                    await videoRef.current.play()
+                    console.log('srcObject setado no vídeo')
+                    videoRef.current.play().catch((err) => {
+                        console.warn('Erro ao tocar vídeo automaticamente:', err)
+                    })
+                    console.log('Vídeo deve estar tocando')
                 }
+
+                const devices = await navigator.mediaDevices.enumerateDevices()
+                console.log('Devices disponíveis:', devices)
 
                 setLoading(false)
             } catch (err) {
@@ -40,6 +49,8 @@ export default function CameraView({ onCapture }: Props) {
     const handleShutterClick = () => {
         setCounting(true)
     }
+
+
 
     const handleCountdownComplete = async () => {
         setCounting(false)
