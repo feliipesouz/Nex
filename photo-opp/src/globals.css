@@ -3,6 +3,6 @@
 @tailwind utilities;
 
 body {
-    @apply bg-gradient-to-br from-zinc-100 to-zinc-300 text-black;
+    @apply w-screen h-screen items-center justify-between text-black;
     font-family: Arial, sans-serif;
 }

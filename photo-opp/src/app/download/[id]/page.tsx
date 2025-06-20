@@ -1,32 +1,28 @@
 'use client'
 
 import { useEffect } from 'react'
-import { useRouter } from 'next/navigation'
+import { useSearchParams, useRouter } from 'next/navigation'
 
-type Props = {
-    params: { id: string }
-}
-
-export default function DownloadPage({ params }: Props) {
+export default function DownloadPage() {
+    const searchParams = useSearchParams()
+    const url = searchParams.get('url')
     const router = useRouter()
 
     useEffect(() => {
-        const dataUrl = localStorage.getItem(params.id)
-        if (!dataUrl) {
-            alert('Imagem não encontrada.')
+        if (!url) {
             router.push('/')
             return
         }
 
         const a = document.createElement('a')
-        a.href = dataUrl
+        a.href = url
         a.download = 'photo.png'
         a.click()
 
         setTimeout(() => {
             router.push('/')
         }, 2000)
-    }, [params.id, router])
+    }, [url, router])
 
     return (
         <div className="h-screen flex items-center justify-center text-center p-6">
