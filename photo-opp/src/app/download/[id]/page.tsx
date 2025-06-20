@@ -30,7 +30,7 @@ export default function DownloadPage({ params }: Props) {
 
     return (
         <div className="h-screen flex items-center justify-center text-center p-6">
-            <p className="text-zinc-700 text-lg font-semibold">
+            <p className="text-textMuted text-lg font-semibold">
                 Preparando download da sua imagem...
             </p>
         </div>

@@ -30,7 +30,7 @@ export default function Countdown({ onComplete }: CountdownProps) {
         <div className="absolute inset-0 z-50 flex items-center justify-center pointer-events-none">
             <span
                 key={count}
-                className="text-[80px] md:text-[160px] font-extrabold text-white drop-shadow-lg animate-scale-fade"
+                className="text-[80px] md:text-[160px] font-extrabold text-background drop-shadow-lg animate-scale-fade"
             >
                 {count}
             </span>

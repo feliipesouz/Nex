@@ -24,7 +24,7 @@ export default function PhotoFinalPage() {
     if (!url) return null
 
     return (
-        <div className="h-screen flex flex-col items-center justify-center bg-white gap-8 p-6">
+        <div className="h-screen flex flex-col items-center justify-center bg-background gap-8 p-6">
             <h2 className="text-2xl font-semibold text-center">Escaneie o QR Code para baixar sua imagem</h2>
 
             <QRCodeCanvas value={url} size={200} level="H" />

@@ -47,7 +47,6 @@ export default function CameraView({ onCapture }: Props) {
         const video = videoRef.current
         if (!video) return
 
-        // Aguarda o vídeo estar pronto
         await new Promise<void>((resolve) => {
             if (video.videoWidth > 0 && video.videoHeight > 0) return resolve()
             const check = setInterval(() => {
@@ -71,7 +70,7 @@ export default function CameraView({ onCapture }: Props) {
 
     if (error) {
         return (
-            <div className="w-full h-screen flex flex-col justify-center items-center text-center p-6 text-zinc-700">
+            <div className="w-full h-screen flex flex-col justify-center items-center text-center p-6 text-textMuted">
                 <p className="text-lg font-semibold mb-4">Ops! Não foi possível acessar a câmera.</p>
                 <p className="text-sm max-w-md">{error}</p>
             </div>
@@ -79,7 +78,7 @@ export default function CameraView({ onCapture }: Props) {
     }
 
     return (
-        <div className="relative w-full h-screen flex flex-col items-center justify-center bg-black">
+        <div className="relative w-full h-screen flex flex-col items-center justify-center bg-text">
             <video
                 ref={videoRef}
                 autoPlay
@@ -91,7 +90,7 @@ export default function CameraView({ onCapture }: Props) {
             {!counting && (
                 <button
                     onClick={handleShutterClick}
-                    className="absolute bottom-10 w-20 h-20 rounded-full border-[6px] border-zinc-400 bg-white shadow-md hover:scale-105 transition"
+                    className="absolute bottom-10 w-20 h-20 rounded-full border-[6px] border-borderMuted bg-background shadow-md hover:scale-105 transition"
                 />
             )}
 
