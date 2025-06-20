@@ -6,6 +6,7 @@ import Preview from '@/components/Preview'
 import { useRouter } from 'next/navigation'
 import { v4 as uuidv4 } from 'uuid'
 import { loadMoldura } from '@/lib/loadMoldura'
+import { uploadImage } from './_actions/uploadImageAction'
 
 export default function CapturePage() {
     const [photo, setPhoto] = useState<string | null>(null)
@@ -14,20 +15,10 @@ export default function CapturePage() {
     const handleApprove = async () => {
         const id = uuidv4()
 
-        const response = await fetch('/api/upload', {
-            method: 'POST',
-            body: JSON.stringify({ id, image: photo }),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        })
+        const response = await uploadImage({ id, image: photo! })
 
-        const { url } = await response.json()
-
-        router.push(`/photo/${id}?url=${encodeURIComponent(url)}`)
+        router.push(`/photo/${id}?url=${encodeURIComponent(response.url)}`)
     }
-
-
 
     const handleCapture = async (video: HTMLVideoElement) => {
         try {
