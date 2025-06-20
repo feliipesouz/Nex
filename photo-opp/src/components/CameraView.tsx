@@ -26,15 +26,10 @@ export default function CameraView({ onCapture }: Props) {
                 if (videoRef.current) {
                     videoRef.current.srcObject = stream
                     console.log('srcObject setado no vídeo')
-                    videoRef.current.play().catch((err) => {
-                        console.warn('Erro ao tocar vídeo automaticamente:', err)
-                    })
-                    console.log('Vídeo deve estar tocando')
                 }
 
                 const devices = await navigator.mediaDevices.enumerateDevices()
                 console.log('Devices disponíveis:', devices)
-
                 setLoading(false)
             } catch (err) {
                 console.error('Erro ao acessar a câmera:', err)
@@ -53,18 +48,19 @@ export default function CameraView({ onCapture }: Props) {
         try {
             await video.play()
             setCounting(true)
-            console.log('Ready state:', video.readyState)
+            console.log('Play manual acionado')
         } catch (err) {
             console.warn('Erro ao tentar dar play manualmente:', err)
         }
     }
 
-
     const handleCountdownComplete = async () => {
         setCounting(false)
-
         const video = videoRef.current
         if (!video) return
+
+        console.log('ReadyState antes da captura:', video.readyState)
+        console.log('VideoWidth:', video.videoWidth, 'VideoHeight:', video.videoHeight)
 
         await new Promise<void>((resolve) => {
             if (video.videoWidth > 0 && video.videoHeight > 0) return resolve()
@@ -100,10 +96,9 @@ export default function CameraView({ onCapture }: Props) {
         <div className="relative w-full h-screen flex flex-col items-center justify-center bg-text">
             <video
                 ref={videoRef}
-                autoPlay
                 muted
-                controls
                 playsInline
+                autoPlay={false}
                 className="absolute inset-0 w-full h-full object-cover"
             />
 
