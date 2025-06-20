@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "firebase-admin": "^13.4.0",
     "next": "15.3.3",
     "qrcode.react": "^4.2.0",
     "react": "^19.0.0",

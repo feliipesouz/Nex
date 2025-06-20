@@ -11,11 +11,23 @@ export default function CapturePage() {
     const [photo, setPhoto] = useState<string | null>(null)
     const router = useRouter()
 
-    const handleApprove = () => {
+    const handleApprove = async () => {
         const id = uuidv4()
-        localStorage.setItem(id, photo!)
-        router.push(`/photo/${id}`)
+
+        const response = await fetch('/api/upload', {
+            method: 'POST',
+            body: JSON.stringify({ id, image: photo }),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        })
+
+        const { url } = await response.json()
+
+        router.push(`/photo/${id}?url=${encodeURIComponent(url)}`)
     }
+
+
 
     const handleCapture = async (video: HTMLVideoElement) => {
         try {
