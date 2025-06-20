@@ -18,12 +18,12 @@ export default function CameraView({ onCapture }: Props) {
         const enableCamera = async () => {
             try {
                 const stream = await navigator.mediaDevices.getUserMedia({
-                    video: { facingMode: 'user' },
-                    audio: false,
+                    video: { facingMode: 'user' }
                 })
 
                 if (videoRef.current) {
                     videoRef.current.srcObject = stream
+                    await videoRef.current.play()
                 }
 
                 setLoading(false)
@@ -82,9 +82,10 @@ export default function CameraView({ onCapture }: Props) {
             <video
                 ref={videoRef}
                 autoPlay
-                playsInline
                 muted
-                className="rounded-lg w-auto h-full object-contain"
+                playsInline
+                {...{ 'webkit-playsinline': 'true' }}
+                className="absolute inset-0 w-full h-full object-cover"
             />
 
             {!counting && (
