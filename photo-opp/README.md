@@ -53,16 +53,13 @@ yarn dev
 Acesse: http://localhost:3000
 
 
-Estrutura Principal
-app/: páginas com App Router (Next.js 15)
+## 📁 Estrutura de Pastas
 
-components/: componentes reutilizáveis (ex: CameraView, Countdown, etc)
-
-lib/firebase.ts: inicialização do Firebase
-
-actions/: ações assíncronas como upload de imagem
-
-types/: tipagens globais
+- `app/`: páginas com App Router (Next.js 15)
+- `components/`: componentes reutilizáveis 
+- `lib/firebase.ts`: inicialização do Firebase Admin
+- `actions/`: ações assíncronas (ex: upload de imagem)
+- `types/`: tipagens globais
 
 
 
