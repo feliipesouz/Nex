@@ -46,10 +46,18 @@ export default function CameraView({ onCapture }: Props) {
         enableCamera()
     }, [])
 
-    const handleShutterClick = () => {
-        setCounting(true)
-    }
+    const handleShutterClick = async () => {
+        const video = videoRef.current
+        if (!video) return
 
+        try {
+            await video.play()
+            setCounting(true)
+            console.log('Ready state:', video.readyState)
+        } catch (err) {
+            console.warn('Erro ao tentar dar play manualmente:', err)
+        }
+    }
 
 
     const handleCountdownComplete = async () => {
@@ -94,8 +102,8 @@ export default function CameraView({ onCapture }: Props) {
                 ref={videoRef}
                 autoPlay
                 muted
+                controls
                 playsInline
-                {...{ 'webkit-playsinline': 'true' }}
                 className="absolute inset-0 w-full h-full object-cover"
             />
 
