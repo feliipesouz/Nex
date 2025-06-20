@@ -1,0 +1,70 @@
+# 📸 Photo Opp
+
+Aplicação interativa para captura de fotos via webcam em eventos. Desenvolvida com **Next.js 15**, **Tailwind CSS** e **Firebase Storage**.
+
+---
+
+## 🚀 Tecnologias
+
+- [Next.js 15 (App Router)](https://nextjs.org/docs)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Firebase (Storage)](https://firebase.google.com/products/storage)
+- TypeScript
+- Vercel (deploy)
+
+---
+
+## 🧪 Como rodar localmente
+
+### 1. Clone o repositório
+
+```bash
+git clone https://github.com/feliipesouz/Nex.git
+cd photo-opp
+
+
+2. Instale as dependências
+
+pnpm install
+# ou
+npm install
+# ou
+yarn
+
+
+3. Configure variáveis de ambiente
+Crie um arquivo .env na raiz do projeto com as seguintes variáveis:
+
+FIREBASE_PROJECT_ID=voceeespecial-d7901
+FIREBASE_CLIENT_EMAIL=firebase-adminsdk-en867@voceeespecial-d7901.iam.gserviceaccount.com
+FIREBASE_PRIVATE_KEY_BASE64=LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JSUV2UUlCQURBTkJna3Foa2lHOXcwQkFRRUZBQVNDQktjd2dnU2pBZ0VBQW9JQkFRQ2pJT0haWE9VaWE0ZysKSGZPakRDVkVPemRyNlE2dGZMVEw0Y0VsZktPcXpJMzl2WnRIbnM4S2pCR3VsRFJBTVdPS29yZkdTUDI4RVRIeQpYY2VlNDllV3BVSHZmNTBXdGNRR2dBTERDaHpQY2ticndyRXp4N1dZK1o1anpmN3F2WXUzTHhaR3Q0cVhIN0I5CllqZEs1cktEUVpSWUM0ZUw3NU1yRXUzQTFNTGZPVWRDRUxMVC9pYWExVS9CQXBqcTRPcGlnSDg4ekE3SS9rSnMKbnRRTm85UnphQ1VsaUpzb3Q2V01MS01oNlVUZ3RhRlN5RDEraUZYTHZJZ29hSVlkdFdRWlo0SzNUSGZ4eTI3TApGajVJc3JXQVQ3S3IyNUZvQ29sbUlBOW1WMkVsdFZSYTkweE42Y0xwVEk3Z0JLMytJREJsVUdWYW5YZk5iOXVNCk5GUFBNUFJIQWdNQkFBRUNnZ0VBQXBLWHZUdlRYcGttcDhzK0JSRHNNUmNPNEFldTVnVVV5eE03cytVekY1UUkKOFRyVEthVlRTM1RYMDI4QmxOWUg1V2dMR0NNQXhrdWdCQWEzN1RjZXFHUnZzZjA5QWFXUitvUFIzS29GUmt2UApUTDVSOVl3MGhhRlBmdFBrbjBvMmFhUitkbzIyQkxaWEFZcFI0T29UMGI5d0lRZklMejNrcXJldVh0OThIUTM2CkwzbVMyYlhVbll0TUpZODhvV2xtbFhnT01rMERnNDZOa2xDQlFVTlJZdkNvWEdYV3ZKMGZEUEE2dVFqODRjencKbTErWUdPeFAvaXVXNk44MUtlVHRKaXFIMXRPRTM3Y2ZnMFkxbDRjQUNjRE5XcEhVRElhR3VxZi9McERWWjg2ZgpaVmdYRHVJeVBNaTJDaDZrRUtKdWtuUkxkTWZJVVF0ZENnN3hQakhiMFFLQmdRRFlJV3FUVW9pSkJkeERJVlQyClNxbEp1aGgrR3phOVRIb2dlRmNkclBrd0RGc0JodWdXa252ekh3OWdVOStjdXhZWXpJSDhxVXRBK01ET1BaajkKTEppT0wrb0J0WGRXbzE1NWtWZHlkUXlDYXJjV05wSGFiUTJpYndGNzdpdVhkbWFJVkJ3Q1RrWFpKeUpSaFNwQgp0aDl0d3ExUGk2aU00TkM0ZnBtQ1N1bWtIUUtCZ1FEQk9IeVlqaDJUOEhsZm9vY3JQcEN2dm53Zlh2eEs1N2lqCmF3cXE0RlVBVUU3ZUFXQzM4Rjg2SlJQZ3JxQWJYK2JTWGtPaDJwWVQwdXZ2MnFlQ3VYRmxrM3ZvQ2pGWU5TbUEKcUk3NGE3K2dZRXpSeU1UYkFCTU1ibUZ2NGhGZjlLZFdNTFNvK3Q4R2srbzkrWWtpcGtiY0xPaG51RDl5ckUxRQowN1NINjFIRXN3S0JnSEo4NFJQQk9JbzlESHlTLzRxbjZoMGY4ekY2QVBrdHRkUFZhM0JRM0g5VFRESDI0S0owClhpeGZXNm5QUkRpbDhnS1k4cEtBcTFoemJNN1RXbU5pYUQySnJBL1RySys4UXFOckZrT1BOVjB3WW1QbDdFVWsKVjRDZ0JNMDlVT0llMmhtRlZJRDBMWlBtWXd1RDJ1cU1Ld0hkaWlrRTlmZ0tid1lNS2cwVzJjVVJBb0dBVC9YQgpVaHlWenZBWU9tUjNEWVZSdVBqYVF0MDdDUUNGMzFMZjBrRU56Qmh2MnQyMUdjbW1qdGhqTm5ydGxRYUY3ZzdHCmJFZWFEZEFlaFY3MkxWbnl2SGRoTW5CdFpUUnkzV1JqN2hnZzhBeUtIZEs0N0d4R2RjR0VIeG50Mk1qVkt3enkKNW04VE5wU2x2a255MzF6eVBCRjFoOTZ1bXhVRTBQUFBaT1FVTFpNQ2dZRUF3cmVhS0RmbTcxWFFUU2tGSDdkSwowQjh1VmJVZ2dnZ1dxRi8rMVZtbHl2OWNkRVlIWW0vbXVxZE5PQVV0U1BTQW9mWUN1VXoyMmxPdDlzUXVHWUU2CnJBSEdjRm1aelU0WmFvUjdKb3k0dkJzTW9vZlNnVmN4QVB5MVExdEdWMTlTelZSK2RNTkhUNWJMMXJidjA2MTAKUmhFcGc5SE4rUFVxMDNGbm4rdlo2SEk9Ci0tLS0tRU5EIFBSSVZBVEUgS0VZLS0tLS0K
+FIREBASE_STORAGE_BUCKET=gs://voceeespecial-d7901.appspot.com
+
+
+4. Rode a aplicação
+
+
+pnpm dev
+# ou
+npm run dev
+# ou
+yarn dev
+
+Acesse: http://localhost:3000
+
+
+Estrutura Principal
+app/: páginas com App Router (Next.js 15)
+
+components/: componentes reutilizáveis (ex: CameraView, Countdown, etc)
+
+lib/firebase.ts: inicialização do Firebase
+
+actions/: ações assíncronas como upload de imagem
+
+types/: tipagens globais
+
+
+
+Desenvolvido por Felipe Arruda
+Contato: felipesouzaero@gmail.com
